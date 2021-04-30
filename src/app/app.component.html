@@ -1,0 +1,110 @@
+<h2 style="margin-left: 20rem;">MRP Calculator</h2>
+
+<div class="item-form">
+  <h3>Editar items</h3>
+  <form [formGroup]="itemForm">
+    <div class="first">
+      <select value="items[0].Nome" (change)="changeItem($event)">
+        <option *ngFor="let item of items; let i=index" [ngValue]="item.Nome"> {{item.Nome}}
+        </option>
+      </select>
+    </div>
+    <br>
+    <div class="fields">
+      <div class="field">
+        Nome: <input [value]="item.Nome" name="{{item.ID}}.Nome" (keyup)="somethingChanged($event)">
+      </div>
+      <div class="field">
+        Lote: <input [value]="item.Lote" name="{{item.ID}}.Lote" (keyup)="somethingChanged($event)">
+      </div>
+      <div class="field">
+        LT: <input [value]="item.LT" name="{{item.ID}}.LT" (keyup)="somethingChanged($event)">
+      </div>
+      <div class="field">
+        ES: <input [value]="item.ES" name="{{item.ID}}.ES" (keyup)="somethingChanged($event)">
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="content" role="main">
+  <div *ngFor="let item of items">
+    <div class="container">
+      <div class="item-left">
+        <table>
+          <tr>
+            <td>
+              {{item.Nome}}
+            </td>
+          </tr>
+          <tr>
+
+            <td>
+              Lote={{item.Lote}}
+            </td>
+          </tr>
+
+          <tr>
+
+            <td>
+              LT={{item.LT}}
+            </td>
+          </tr>
+          <tr>
+
+            <td>
+              ES={{item.ES}}
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="item-right">
+        <table>
+          <tr>
+            <th>Períodos</th>
+            <td *ngFor="let it of item.Periodos; let i = index">
+              {{i+1}}
+            </td>
+          </tr>
+          <tr>
+            <th>{{labels[0]}}</th>
+            <td *ngFor="let it of item.Periodos; let i = index">
+              <input name="{{item.ID}}.{{i}}.{{columns[0]}}" [value]="it[columns[0]]"
+                (keyup)="somethingChanged($event)">
+            </td>
+          </tr>
+          <tr>
+            <th>{{labels[1]}}</th>
+            <td *ngFor="let it of item.Periodos; let i = index">
+              <input name="{{item.ID}}.{{i}}.{{columns[1]}}" [value]="it[columns[1]]"
+                (keyup)="somethingChanged($event)">
+            </td>
+          </tr>
+          <tr>
+            <th>{{labels[2]}}</th>
+            <td *ngFor="let it of item.Periodos; let i = index">
+              <input name="{{item.ID}}.{{i}}.{{columns[2]}}" [value]="it[columns[2]]"
+                (keyup)="somethingChanged($event)">
+            </td>
+          </tr>
+          <tr>
+            <th>{{labels[3]}}</th>
+            <td *ngFor="let it of item.Periodos; let i = index">
+              <input name="{{item.ID}}.{{i}}.{{columns[3]}}" [value]="it[columns[3]]"
+                (keyup)="somethingChanged($event)">
+            </td>
+          </tr>
+          <tr>
+            <th>{{labels[4]}}</th>
+            <td *ngFor="let it of item.Periodos; let i = index">
+              <input name="{{item.ID}}.{{i}}.{{columns[4]}}" [value]="it[columns[4]]"
+                (keyup)="somethingChanged($event)">
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
